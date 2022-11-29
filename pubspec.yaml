@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   ffmpeg_kit_flutter_full_gpl: ^5.1.0
-  image_picker: ^0.8.6
+  images_picker: ^1.2.11
 
 
   # The following adds the Cupertino Icons font to your application.

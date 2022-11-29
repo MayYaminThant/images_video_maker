@@ -1,5 +1,8 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:images_picker/images_picker.dart';
 import 'package:images_video_maker/controller/transaction_effect_controller.dart';
 import 'package:images_video_maker/util/ffmpeg_kit_utils.dart';
 import 'package:images_video_maker/widget/video_player_item.dart';
@@ -42,7 +45,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
-  List<XFile> images = [];
+  List<Media> images = [];
   String? videoUrl;
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         child: Column(
           children: [
             Expanded(
-              child: images.isNotEmpty
+              child: videoUrl != null && videoUrl!.isNotEmpty
                   ? VideoPlayerItem(videoUrl: videoUrl)
                   : Container(
                       color: Colors.red,
@@ -112,13 +115,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       actions: [
         TextButton(
           onPressed: () async {
-            images = await ImagePicker().pickMultiImage();
+            images = await ImagesPicker.pick(count: 4) ?? [];
             UtilsFFmpegKit.makeVideoWithSwipe(
                 images: images,
                 onSuccess: (outputPath) {
                   videoUrl = outputPath;
                   setState(() {});
                 });
+            log('success');
           },
           child: const Text(
             'Pick',
