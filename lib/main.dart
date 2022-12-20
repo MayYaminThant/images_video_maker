@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
@@ -7,7 +6,6 @@ import 'package:images_video_maker/controller/transaction_effect_controller.dart
 import 'package:images_video_maker/util/ffmpeg_kit_utils.dart';
 import 'package:images_video_maker/widget/video_player_item.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 
 import 'controller/video_state_controller.dart';
 
